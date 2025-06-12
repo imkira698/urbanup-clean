@@ -61,10 +61,17 @@ const Contact = () => {
         throw new Error('Please fill in all fields');
       }
 
+      const place = formData.get('place') as string;
+      
+      if (!name || !email || !phone || !place || !message) {
+        throw new Error('Please fill in all fields');
+      }
+
       const templateParams = {
         user_name: name,
         user_email: email,
         user_phone: phone,
+        user_place: place,
         user_message: message,
         to_name: 'UrbanUP Team',
       };
@@ -177,6 +184,20 @@ const Contact = () => {
             {phoneError && (
               <p className="text-red-400 text-sm mt-2">{phoneError}</p>
             )}
+          </div>
+
+          <div>
+            <label htmlFor="place" className="block text-white text-lg font-medium mb-2">
+              Place
+            </label>
+            <input
+              type="text"
+              id="place"
+              name="place"
+              required
+              className="w-full px-6 py-4 bg-transparent border-2 border-green-500 rounded-full text-white placeholder-gray-400 focus:outline-none focus:border-green-400 transition-colors duration-300"
+              placeholder="Enter your city"
+            />
           </div>
 
           <div>
